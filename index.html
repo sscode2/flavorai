@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FlavorAI - Smart Recipe Assistant</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="app-header">
+            <div class="header-content">
+                <h1 class="app-title">🍳 FlavorAI</h1>
+                <p class="app-tagline">Your intelligent cooking companion</p>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Input Section -->
+            <section class="input-section">
+                <div class="hero-card">
+                    <h2>What's in your kitchen?</h2>
+                    <p>Enter ingredients you have, and we'll create delicious recipes</p>
+                    
+                    <form id="recipeForm" class="recipe-form">
+                        <div class="input-group">
+                            <label for="ingredients">Ingredients (comma separated)</label>
+                            <textarea 
+                                id="ingredients" 
+                                placeholder="e.g., eggs, rice, tomato, onion, garlic"
+                                required
+                                rows="3"
+                            ></textarea>
+                        </div>
+
+                        <div class="input-group">
+                            <label for="tone">Cooking Style</label>
+                            <select id="tone">
+                                <option value="normal">Normal</option>
+                                <option value="quick">Quick & Easy</option>
+                                <option value="healthy">Healthy</option>
+                                <option value="kid-friendly">Kid-friendly</option>
+                                <option value="gourmet">Gourmet</option>
+                            </select>
+                        </div>
+
+                        <div class="input-group">
+                            <label for="pdfUpload">Or upload a recipe PDF (optional)</label>
+                            <input type="file" id="pdfUpload" accept=".pdf" />
+                            <small>We'll extract and summarize recipes from your PDF</small>
+                        </div>
+
+                        <button type="submit" class="primary-btn" id="findRecipes">
+                            <span class="btn-text">Find Recipes</span>
+                            <span class="btn-loader" style="display: none;">
+                                <div class="spinner"></div>
+                                Generating recipes...
+                            </span>
+                        </button>
+                    </form>
+                </div>
+            </section>
+
+            <!-- Results Section -->
+            <section class="results-section" id="resultsSection" style="display: none;">
+                <div class="section-header">
+                    <h2>Recipe Suggestions</h2>
+                    <button class="toggle-saved-btn" id="toggleSaved">View Saved Recipes (0)</button>
+                </div>
+                
+                <div class="recipes-grid" id="recipesGrid">
+                    <!-- Recipe cards will be dynamically inserted here -->
+                </div>
+            </section>
+
+            <!-- Saved Recipes Panel -->
+            <aside class="saved-panel" id="savedPanel">
+                <div class="saved-header">
+                    <h3>Saved Recipes</h3>
+                    <button class="close-saved" id="closeSaved">×</button>
+                </div>
+                <div class="saved-list" id="savedList">
+                    <!-- Saved recipes will appear here -->
+                </div>
+            </aside>
+        </main>
+
+        <!-- Error Modal -->
+        <div class="modal" id="errorModal">
+            <div class="modal-content">
+                <span class="close-modal" id="closeModal">×</span>
+                <h3>Oops! Something went wrong</h3>
+                <p id="errorMessage"></p>
+                <button class="primary-btn" id="retryButton">Try Again</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
